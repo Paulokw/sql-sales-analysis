@@ -1,0 +1,35 @@
+/****** Script for SelectTopNRows command from SSMS  ******/
+SELECT TOP (1000) [CustomerKey]
+      -----,[GeographyKey]
+      -----,[CustomerAlternateKey]
+      ,[Title]
+      ,[FirstName]
+      ,[MiddleName]
+      ,[LastName]
+	  ,CONCAT(firstname, ', ', lastname) as fullname
+     -----,[NameStyle]
+      ,[BirthDate]
+      ,[MaritalStatus]
+      ----,[Suffix]
+      ,CASE [Gender] when 'M' then 'Male' when 'F' then 'Female' end as Gender
+	  
+      ----,[EmailAddress]
+      ----,[YearlyIncome]
+      ----,[TotalChildren]
+      ----,[NumberChildrenAtHome]
+      ----,[EnglishEducation]
+      ----,[SpanishEducation]
+      ----,[FrenchEducation]
+      ----,[EnglishOccupation]
+      ----,[SpanishOccupation]
+      ----,[FrenchOccupation]
+      ----,[HouseOwnerFlag]
+      ----,[NumberCarsOwned]
+      ----,[AddressLine1]
+      ----,[AddressLine2]
+      ----,[Phone]
+      ,[DateFirstPurchase]
+      ,[CommuteDistance]
+  FROM [AdventureWorksDW2022].[dbo].[DimCustomer]
+  left join dbo.DimGeography as g ON dbo.DimCustomer.GeographyKey=g.GeographyKey
+  order by CustomerKey asc
